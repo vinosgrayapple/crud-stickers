@@ -3,7 +3,7 @@ module.exports = {
     client: 'pg',
     connection: {
       host: '127.0.0.1',
-      port: '5433',
+      port: process.env.PGPORT,
       user: 'vinos',
       password: '1004797537',
       database: 'vinos-web-store'
@@ -13,7 +13,7 @@ module.exports = {
     client: 'pg',
     connection: {
       host: '127.0.0.1',
-      port: '5433',
+      port: process.env.PGPORT,
       user: 'vinos',
       password: '1004797537',
       database: 'test-vinos-web-store'

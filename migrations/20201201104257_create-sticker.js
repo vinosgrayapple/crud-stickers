@@ -1,6 +1,5 @@
-
 exports.up = function (knex) {
-  return knex.schema.createTable('stiker', table => {
+  return knex.schema.createTable('sticker', table => {
     table.increments()
     table.text('title')
     table.text('description')
@@ -10,5 +9,6 @@ exports.up = function (knex) {
 }
 
 exports.down = function (knex) {
-  return knex.dropTable('sticker')
+  return  knex.schema
+            .dropTableIfExists( 'sticker')
 }

@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "noden ./bin/www",
-    "dev": "nodemon ./bin/www",
-    "test": "(sudo -u postgres dropdb --if-exists test-vinos-web-store && sudo -u postgres createdb test-vinos-web-store) && NODE_ENV=test ./node_modules/mocha/bin/mocha"
+    "dev": "nodemon  --trace-deprecation ./bin/www",
+    "test": "(sudo -u postgres dropdb --if-exists test-vinos-web-store && sudo -u postgres createdb test-vinos-web-store) && NODE_ENV=test ./node_modules/mocha/bin/mocha",
+    "test2": "(dropdb --if-exists test-vinos-web-store && createdb test-vinos-web-store) && NODE_ENV=test ./node_modules/mocha/bin/mocha"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
