@@ -54,7 +54,13 @@ const stickers = [
         "url": "http://devstickers.com/assets/img/pro/4gem.png"
     }
 ]
-
+const sticker = {
+  "title": "Komarychev Serhii",
+  "description": "Father's two children" ,
+  "rating": 100,
+  "url": "http://coude.home/123.png"
+}
 module.exports = {
-    stickers
+    stickers,
+    sticker
 }

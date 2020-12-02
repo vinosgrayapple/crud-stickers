@@ -3,14 +3,14 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
-
 const app = express()
 const stickersRoute = require('./api/stikers')
+require('dotenv').config()
+
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-
 app.use('/api/v1/stickers', stickersRoute)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
