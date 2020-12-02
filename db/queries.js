@@ -1,6 +1,6 @@
 const knex = require('./knex')
 module.exports = {
   getAll() {
-    return knex('sticker').select('*')
+    return knex('sticker').select('title', 'description', 'rating', 'url')
   }
 }
