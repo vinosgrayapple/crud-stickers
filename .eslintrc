@@ -1,20 +1,10 @@
 {
-  "plugins": [
-    "prettier",
-    "unicorn"
-  ],
+  "plugins": ["prettier"],
   "env": {
     "es6": true
   },
   "rules": {
-        "semi": ["error", "off"],
-        "quotes": ["error", "single"],
-        "comma-dangle": [2, {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "always-multiline",
-      "exports": "always-multiline",
-      "functions": "always-multiline"
-    }]
-    }
+    "space-before-function-paren": [0, "always"],
+    "quotes": ["error", "single"]
+  }
 }

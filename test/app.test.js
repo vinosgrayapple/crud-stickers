@@ -5,7 +5,6 @@ const app = require('../app')
 const { stickers, sticker } = require('./fixtures')
 
 describe('CRUD Stickers', (done) => {
-
   before((done) => {
     knex
       .migrate
@@ -20,7 +19,7 @@ describe('CRUD Stickers', (done) => {
   it('List All Records', (done) => {
     request(app)
       .get('/api/v1/stickers')
-      
+
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
@@ -29,15 +28,16 @@ describe('CRUD Stickers', (done) => {
         expect(response.body).to.deep.equal(stickers)
         done()
       })
+      .catch(done)
   })
-  it('A record by ID', (done) => {
+  it('A sticker by ID', (done) => {
     request(app)
       .get('/api/v1/stickers/1')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((response) => {
-        stickers[0].id=response.body.id
+        stickers[0].id = response.body.id
         expect(response.body).to.be.a('object')
         expect(response.body).to.deep.equal(stickers[0])
         done()
@@ -52,7 +52,7 @@ describe('CRUD Stickers', (done) => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then((response) => {
-        sticker.id=response.body.id
+        sticker.id = response.body.id
         expect(response.body).to.be.a('object')
         expect(response.body).to.deep.equal(sticker)
         done()

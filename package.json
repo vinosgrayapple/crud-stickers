@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "PGPORT=5433 noden ./bin/www",
-    "dev": "PGPORT=5432 nodemon  --trace-deprecation ./bin/www",
+    "dev": "nodemon  --trace-deprecation ./bin/www",
     "test": "(sudo -u postgres dropdb --if-exists test-vinos-web-store && sudo -u postgres createdb test-vinos-web-store) && PGPORT=5433,NODE_ENV=test ./node_modules/mocha/bin/mocha",
     "test2": "(dropdb --if-exists test-vinos-web-store && createdb test-vinos-web-store) && NODE_ENV=test ./node_modules/mocha/bin/mocha"
   },
@@ -23,9 +23,13 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "eslint": "^7.14.0",
+    "eslint-plugin-prettier": "^3.2.0",
     "mocha": "^8.2.1",
     "prettier": "2.2.1",
     "prettier-eslint": "^12.0.0",
     "supertest": "^6.0.1"
-  }
+  },
+  "standard": {
+  "env": [ "mocha" ]
+}
 }
