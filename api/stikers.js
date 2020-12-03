@@ -2,18 +2,18 @@ const express = require('express')
 const router = express.Router()
 const queries = require('../db/queries')
 
-function idValidId(req, res, next) {
+function idValidId (req, res, next) {
   if (!isNaN(req.params.id)) {
     return next()
   }
   next(new Error('Invalid ID'))
 }
 
-function validateItem(item) {
+function validateItem (item) {
   return typeof item === 'string' && item.trim() !== ''
 }
 
-function validSticker(sticker) {
+function validSticker (sticker) {
   const {
     title,
     description,
