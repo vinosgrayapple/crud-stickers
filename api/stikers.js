@@ -26,12 +26,15 @@ function validSticker (sticker) {
   const hasRating = !isNaN(rating)
   return hasTitle && hasDescription && hasUrl && hasRating
 }
+
 //  List All Records
 router.get('/', (req, res) => {
-  queries.getAll().then(stickers => {
+  const {title, description} = req.query
+  queries.getAll({title, description}).then(stickers => {
     res.json(stickers)
   })
 })
+
 // Get Sticker by ID
 router.get('/:id', isValidID, (req, res, next) => {
   const {
@@ -45,6 +48,7 @@ router.get('/:id', isValidID, (req, res, next) => {
     }
   })
 })
+
 // POST === Insert sticker to DB
 router.post('/', (req, res, next) => {
   if (validSticker(req.body)) {
@@ -57,6 +61,7 @@ router.post('/', (req, res, next) => {
     next(new Error('Invalid sticker'))
   }
 })
+
 // PUT==Update sticker
 router.put('/:id', isValidID, (req, res, next) => {
   const {
@@ -70,6 +75,7 @@ router.put('/:id', isValidID, (req, res, next) => {
     next(new Error('Invalid sticker'))
   }
 })
+
 // DELETE== sticker
 router.delete('/:id', isValidID, (req, res, next) => {
   const {
@@ -83,4 +89,5 @@ router.delete('/:id', isValidID, (req, res, next) => {
         }
     })
 })
+
 module.exports = router
