@@ -18,5 +18,9 @@ module.exports = {
       password: '1004797537',
       database: 'test-vinos-web-store'
     }
+  },
+   production: {
+    client: 'pg',
+    connection:process.env.DATABASE_URL
   }
 }
