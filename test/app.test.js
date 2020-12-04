@@ -2,17 +2,18 @@ const knex = require('../db/knex')
 const request = require('supertest')
 const expect = require('chai').expect
 const app = require('../app')
-const { stickers, sticker } = require('./fixtures')
+const { stickers, sticker, stickerUpdate } = require('./fixtures')
 
 describe('CRUD Stickers', (done) => {
   before((done) => {
-    knex
-      .migrate
+    knex.migrate
       .latest()
       .then(() => {
         return knex.seed.run()
       })
-      .then(() => { done() })
+      .then(() => {
+        done()
+      })
       .catch(done)
   })
 
@@ -55,6 +56,38 @@ describe('CRUD Stickers', (done) => {
         sticker.id = response.body.id
         expect(response.body).to.be.a('object')
         expect(response.body).to.deep.equal(sticker)
+        done()
+      })
+      .catch(done)
+  })
+  it('Update sticker', (done) => {
+    sticker.rating = 500
+    request(app)
+      .put('/api/v1/stickers/10')
+      .send(sticker)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((response) => {
+        sticker.id = response.body.id
+        expect(response.body).to.be.a('object')
+        expect(response.body).to.deep.equal(sticker)
+        done()
+      })
+      .catch(done)
+  })
+  it('Delete sticker', (done) => {
+    request(app)
+      .delete('/api/v1/stickers/10')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((response) => {
+        sticker.id = response.body.id
+        expect(response.body).to.be.a('object')
+        expect(response.body).to.deep.equal({
+          deleted: true
+        })
         done()
       })
       .catch(done)
